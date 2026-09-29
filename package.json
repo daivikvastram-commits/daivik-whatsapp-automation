@@ -1,0 +1,20 @@
+{
+  "name": "daivik-whatsapp-automation",
+  "version": "1.0.0",
+  "description": "Daivik Vastram WhatsApp Automation - Shopify + Meta WhatsApp Cloud API",
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^6.6.0"
+  }
+}

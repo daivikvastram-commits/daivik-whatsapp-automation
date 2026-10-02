@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "bulk-whatsapp-api",
+    "name": "Bulk WhatsApp Message Sender",
+    "description": "API for sending bulk WhatsApp messages using Mata Rani template",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Get Queue Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/bulk/status",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Testing",
+      "item": [
+        {
+          "name": "Test Single Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"9876543210\",\n  \"bodyParams\": []\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bulk/test",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "test"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bulk Send",
+      "item": [
+        {
+          "name": "Simple Bulk Send",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    \"9876543210\",\n    \"9876543211\",\n    \"9876543212\"\n  ],\n  \"campaignName\": \"Quick Launch - Mata Rani Collection\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bulk/send",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "send"]
+            }
+          }
+        },
+        {
+          "name": "Bulk Send with Personalization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    {\n      \"phone\": \"9876543210\",\n      \"bodyParams\": [\"Priya\", \"15% OFF\"]\n    },\n    {\n      \"phone\": \"9876543211\",\n      \"bodyParams\": [\"Anaya\", \"20% OFF\"]\n    },\n    {\n      \"phone\": \"9876543212\",\n      \"bodyParams\": [\"Divya\", \"25% OFF\"]\n    }\n  ],\n  \"campaignName\": \"Personalized Discount - Diwali Special\",\n  \"saveCampaign\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bulk/send",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "send"]
+            }
+          }
+        },
+        {
+          "name": "Clear Queue",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/bulk/clear",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "clear"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Campaigns",
+      "item": [
+        {
+          "name": "Create Campaign",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Diwali Special - Mata Rani New Collection\",\n  \"contacts\": [\n    { \"phone\": \"9876543210\", \"bodyParams\": [] },\n    { \"phone\": \"9876543211\", \"bodyParams\": [] },\n    { \"phone\": \"9876543212\", \"bodyParams\": [] }\n  ],\n  \"metadata\": {\n    \"category\": \"seasonal\",\n    \"discount\": \"30%\",\n    \"validUntil\": \"2026-10-15\",\n    \"target\": \"vip_customers\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bulk/campaign/create",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "campaign", "create"]
+            }
+          }
+        },
+        {
+          "name": "Get Campaign Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/bulk/campaign/{{campaign_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "campaign", "{{campaign_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Send Campaign",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/bulk/campaign/{{campaign_id}}/send",
+              "host": ["{{base_url}}"],
+              "path": ["bulk", "campaign", "{{campaign_id}}", "send"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "campaign_id",
+      "value": "replace_with_campaign_id",
+      "type": "string"
+    }
+  ]
+}
